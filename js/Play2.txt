@@ -1,0 +1,255 @@
+Atividade1.Play = function(){ 
+
+
+}; 
+
+
+
+Atividade1.Play.prototype = { 
+
+
+    preload : function(){ 
+	
+	game.load.image('figura1', 'imgs/modelos/1.png');
+	game.load.image('figura2', 'imgs/modelos/2.png');
+	game.load.image('figura3', 'imgs/modelos/3.png');
+	game.load.image('figura4', 'imgs/modelos/4.png');
+	game.load.image('figura5', 'imgs/modelos/5.png');
+	game.load.image('figura6', 'imgs/modelos/6.png');
+	game.load.image('figura7', 'imgs/modelos/7.png');
+	game.load.image('figura8', 'imgs/modelos/8.png');
+	game.load.image('figura9', 'imgs/modelos/9.png');
+	game.load.image('figura10', 'imgs/modelos/10.png');
+	game.load.image('btn2', 'imgs/btn2.png');
+	game.load.atlasJSONHash('imgFeedback', 'animations/animation.png', 'animations/animation.json');
+
+    }, 
+
+    create : function(){ 
+	var btn2 = game.add.sprite (500, 700,'btn2');
+	feedback = game.add.sprite (0,0,'imgFeedback','acerto.png');
+	feedback.visible = false;
+	
+	function sorteiaCartas(){
+	  
+	
+	feedback.visible = false;	
+	//Incrementa rodadas
+	rodadas = rodadas+1;
+	//Sorteia os sprites
+	while(imagemSprite1==imagemSprite2||imagemSprite1==imagemSprite3||imagemSprite2==imagemSprite3){
+	var imagemSprite1 =  Math.floor(Math.random() * 10) + 1;
+	var imagemSprite2 =  Math.floor(Math.random() * 10) + 1;
+	var imagemSprite3 =  Math.floor(Math.random() * 10) + 1;
+	}
+	
+		
+	//Sorteia a posição das cartas
+	while(posicaoFigura1==posicaoFigura2||posicaoFigura1==posicaoFigura3||posicaoFigura2==posicaoFigura3){
+	var posicaoFigura1 =  Math.floor(Math.random() * 3) + 1;
+	var posicaoFigura2 =  Math.floor(Math.random() * 3) + 1;
+	var posicaoFigura3 =  Math.floor(Math.random() * 3) + 1;
+	}
+	
+	//Converte as posições sorteadas nas posições do jogo
+	function selecionaPosicao(figuraNumero){
+	if(figuraNumero==1){
+	return 0;
+	}
+	if(figuraNumero==2){
+	return 300;
+	}
+	if(figuraNumero==3){
+	return 600;
+	}
+
+	
+	
+	}
+	
+	posicaoFigura1 = selecionaPosicao(posicaoFigura1);
+	posicaoFigura2 = selecionaPosicao(posicaoFigura2);
+	posicaoFigura3 = selecionaPosicao(posicaoFigura3);
+	//Converte as figura sorteada em figuras do jogo
+	function selecionaFigura(spriteNumero){
+	if(spriteNumero==1){
+	return 'figura1';
+	}
+	if(spriteNumero==2){
+	return 'figura2';
+	}
+	if(spriteNumero==3){
+	return 'figura3';
+	}
+	if(spriteNumero==4){
+	return 'figura4';
+	}
+	if(spriteNumero==5){
+	return 'figura5';
+	}
+	if(spriteNumero==6){
+	return 'figura6';
+	}
+	if(spriteNumero==7){
+	return 'figura7';
+	}
+	if(spriteNumero==8){
+	return 'figura8';
+	}
+	if(spriteNumero==9){
+	return 'figura9';
+	}
+	if(spriteNumero==10){
+	return 'figura10';
+	}
+	}
+	imagemComparacao1 = selecionaFigura(imagemSprite1);
+	imagemComparacao2 = selecionaFigura(imagemSprite2);
+	imagemComparacao3 = selecionaFigura(imagemSprite3);
+		
+	comparacao1 = game.add.sprite (posicaoFigura1,   0, imagemComparacao1);
+	comparacao2 = game.add.sprite (posicaoFigura2, 0,   imagemComparacao2);
+	comparacao3 = game.add.sprite (posicaoFigura3, 0,   imagemComparacao3);
+	modelo =  game.add.sprite     (300, 300,            imagemComparacao1);
+			
+	comparacao1.inputEnabled = true;
+	comparacao2.inputEnabled = true;
+	comparacao3.inputEnabled = true;
+	btn2.inputEnabled = true;
+	
+	comparacao1.events.onInputDown.add(listener1, this);
+	comparacao2.events.onInputDown.add(listener2, this);
+	comparacao3.events.onInputDown.add(listener3, this);
+	btn2.events.onInputDown.add(listener4, this);
+	
+	console.log("rodadas:" + rodadas);
+	console.log("acertos:" + acertos);
+	console.log("erros:"   +   erros);
+	}
+	
+	
+	function listener1() {
+	       	if(comparacao1.key==modelo.key){
+			mostarAcerto();	
+			window.setTimeout(function() {
+			console.log('acertou');
+			acertos = acertos+1;
+            sorteiaCartas();			
+			}, 1000);	  
+			
+			}
+			
+			else{
+			window.setTimeout(function() {
+			console.log('errou');
+			erros = erros+1; 
+			sorteiaCartas();
+			}, 1000);	
+			 
+			}
+			
+			dbRodadas.push(rodadas);
+			dbAcertos.push(acertos);
+			dbErros.push(erros);
+			
+			console.log(dbRodadas[1]);
+			console.log(dbAcertos[1]);
+            console.log(dbErros[1]);			
+
+	     }
+			
+    function listener2() {
+	       	if(comparacao2.key==modelo.key){
+			mostarAcerto();	
+			window.setTimeout(function() {
+			console.log('acertou');
+			acertos = acertos+1; 
+			sorteiaCartas();
+			}, 1000);	
+            			
+			}
+			
+			else{
+			window.setTimeout(function() {
+			console.log('errou');
+			erros = erros+1; 
+			sorteiaCartas();
+			}, 1000);	
+			
+			}
+			
+            }
+			
+	function listener3() {
+		   
+		    if(comparacao3.key==modelo.key){
+			mostarAcerto();
+			window.setTimeout(function() {
+			console.log('acertou');
+			acertos = acertos+1; 
+			sorteiaCartas();	
+			}, 1000);	
+            		
+			}
+			
+			else{
+			window.setTimeout(function() {
+			console.log('errou');
+			erros = erros+1; 
+			sorteiaCartas();
+			}, 1000);
+            			
+			}
+			
+		   
+            }
+			
+	function listener4(){
+		geraGrafico();
+	}
+
+         sorteiaCartas();
+	// variáveis locais inicializadas
+	feedback = game.add.sprite (0,0,'imgFeedback','acerto.png');
+	feedback.visible = false;
+	
+	function mostarAcerto(){
+	 /*feedback = game.add.sprite (0,0,'imgFeedback','acerto.png');*/
+	 feedback.visible = true;
+     feedback.bringToTop();
+     }
+	 
+	 function InputsOnOff(){
+		 
+	     comparacao1.inputEnabled = true;
+	     comparacao2.inputEnabled = true;
+	     comparacao3.inputEnabled = true;
+		 		
+	 }
+
+	
+	
+	
+	
+	},	 
+
+	
+	
+	
+	
+	
+	
+	
+
+	
+    update : function(){ 
+	  
+
+    }
+
+	
+}
+
+
+/*Muito importante adicionar os states nos arquivos separados*/
+game.state.add('Play',Atividade1.Play);
