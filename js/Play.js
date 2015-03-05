@@ -26,17 +26,15 @@ preload : function(){
 	game.load.image('enviar', 'imgs/enviar.png');
 	game.load.image('plus', 'imgs/plus.png');
 	
-	game.load.image('seta1', 'imgs/seta1.png');
-	game.load.image('seta2', 'imgs/seta2.png');
+	game.load.image('linha1', 'imgs/linha1.png');
+	game.load.image('linha2', 'imgs/linha2.png');
 	game.load.image('bg', 'imgs/bg.png');
+	game.load.image('menu', 'imgs/menu.png');
 }, 
 
 
 //**********************************CREATE*********************************************//
 create : function(){ 
-
-// Start physic system
-game.physics.startSystem(Phaser.Physics.ARCADE);
 	
 // Add all sprites
 	bg = game.add.sprite(0, 0, 'bg');
@@ -53,15 +51,12 @@ game.physics.startSystem(Phaser.Physics.ARCADE);
 	drag11 = game.add.sprite(530, 105, 'drag11');
 	drag12 = game.add.sprite(472, 105, 'drag12');
 	drag13 = game.add.sprite(372, 350, 'drag13');
+	menu = game.add.sprite(680,40,'menu');
 	
-	seta1 = game.add.sprite(600, 260, 'seta1');
-	seta2 = game.add.sprite(600, 280, 'seta2');
-    enviar = game.add.sprite(640, 390, 'enviar');
-	plus = game.add.sprite(0,0, 'plus');
-	
-	// Add a physics to sprites
-    game.physics.enable( [ drag1, drag2, seta1, seta2 ], Phaser.Physics.ARCADE);
 
+    enviar = game.add.sprite(680, 390, 'enviar');
+	plus = game.add.sprite(680, 80, 'plus');
+	
 	//Enable inputs 
     drag1.inputEnabled = true;
 	drag2.inputEnabled = true;
@@ -76,8 +71,7 @@ game.physics.startSystem(Phaser.Physics.ARCADE);
 	drag11.inputEnabled = true;
 	drag12.inputEnabled = true;
 	drag13.inputEnabled = true;
-	seta1.inputEnabled = true;
-	seta2.inputEnabled = true;
+	
 	enviar.inputEnabled = true;
 	plus.inputEnabled = true;
 
@@ -98,8 +92,8 @@ game.physics.startSystem(Phaser.Physics.ARCADE);
 	drag12.input.enableDrag(true);
 	drag13.input.enableDrag(true);
 	
-	seta1.input.enableDrag(true);
-	seta2.input.enableDrag(true);
+	
+	
 	
 	function goToFeedback(){
 	game.state.start('Feedback');
@@ -109,8 +103,16 @@ game.physics.startSystem(Phaser.Physics.ARCADE);
 	linhas = game.add.group();	
 	// Função que cria linhas dinamicamente
 	createLine = function (){
-    var linha = game.add.sprite(0, 0, 'seta1');
+    var linha = game.add.sprite(680, 80, 'linha1');
+	linha.inputEnabled = true;
+	linha.input.enableDrag(true);
+	linha.anchor.setTo(0.5, 0.5);
+	//function rotateLine(){
+	//linha.rotation = linha.rotation+45;
+	//}
+	//linha.events.onInputDown.add(rotateLine, this);
 	linhas.add(linha);
+	
 	}
 
 	enviar.events.onInputDown.add(goToFeedback, this);
