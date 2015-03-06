@@ -2,9 +2,13 @@ Atividade1.Play = function(){
 }; 
 
 //Variável que controla os ID's das linhas geradas dinamicamente 
+var linha;
 var linhas;
 
 
+
+	
+	
 Atividade1.Play.prototype = { 
 
 //**********************************PRELOAD*********************************************//
@@ -41,10 +45,15 @@ preload : function(){
 
 
 //**********************************CREATE*********************************************//
+
+
 create : function(){ 
-	
+	game.physics.startSystem(Phaser.Physics.ARCADE);
 // Add all sprites
 	bg = game.add.sprite(0, 0, 'bg');
+	menu = game.add.sprite(680,40,'menu');
+	remove = game.add.sprite(680, 250, 'remove');
+	enviar = game.add.sprite(680, 390, 'enviar');
     drag1 = game.add.sprite(36, 68, 'drag1');
     drag2 = game.add.sprite(114, 153, 'drag2');
 	drag3 = game.add.sprite(26, 210, 'drag3');
@@ -58,9 +67,10 @@ create : function(){
 	drag11 = game.add.sprite(530, 105, 'drag11');
 	drag12 = game.add.sprite(472, 105, 'drag12');
 	drag13 = game.add.sprite(372, 350, 'drag13');
-	menu = game.add.sprite(680,40,'menu');
-	remove = game.add.sprite(680, 250, 'remove');
-	enviar = game.add.sprite(680, 390, 'enviar');
+	
+	
+	
+	
 	
 	s1 = game.add.sprite(680, 90, 's1');
 	s2 = game.add.sprite(710, 90, 's2');
@@ -103,7 +113,6 @@ create : function(){
 	g4.inputEnabled = true;
 
 
-	
 	//Enable drags
     drag1.input.enableDrag(true);
 	drag2.input.enableDrag(true);
@@ -122,44 +131,91 @@ create : function(){
 	
 	
 	
+	
 	function goToFeedback(){
 	game.state.start('Feedback');
 		
 	}
 	
 	linhas = game.add.group();	
+	
 	// Função que cria linhas dinamicamente
-	createLine = function (){
-    var linha = game.add.sprite(680, 80, 'linha1');
+	
+	//Linha Tipo
+	createLine1 = function (){
+    linha = game.add.sprite(680, 80, 'linha1');
+	linha.rotation = linha.rotation+90;
 	linha.inputEnabled = true;
 	linha.input.enableDrag(true);
 	linha.anchor.setTo(0.5, 0.5);
-	//function rotateLine(){
-	//linha.rotation = linha.rotation+45;
-	//}
-	//linha.events.onInputDown.add(rotateLine, this);
+	linhas.add(linha);
+	}
+	
+	//Linha Tipo 2
+	createLine2 = function (){
+    linha = game.add.sprite(680, 80, 'linha2');
+	linha.rotation = linha.rotation;
+	linha.inputEnabled = true;
+	linha.input.enableDrag(true);
+	linha.anchor.setTo(0.5, 0.5);
+	linhas.add(linha);
+	}
+	
+	//Linha Tipo 3
+	createLine3 = function (){
+    linha = game.add.sprite(680, 80, 'linha1');
+	linha.rotation = linha.rotation+180;
+	linha.inputEnabled = true;
+	linha.input.enableDrag(true);
+	linha.anchor.setTo(0.5, 0.5);
+	linhas.add(linha);
+	}
+	
+	//Linha Tipo
+	createLine4 = function (){
+    linha = game.add.sprite(680, 80, 'linha1');
+	linha.rotation = linha.rotation+0;
+	linha.inputEnabled = true;
+	linha.input.enableDrag(true);
+	linha.anchor.setTo(0.5, 0.5);
 	linhas.add(linha);
 	
 	}
-
+	
+	
+	
 	enviar.events.onInputDown.add(goToFeedback, this);
-	s1.events.onInputDown.add(createLine, this);
+	s1.events.onInputDown.add(createLine1, this);
+	s2.events.onInputDown.add(createLine2, this);
+	s3.events.onInputDown.add(createLine3, this);
+	s4.events.onInputDown.add(createLine4, this);
+
+	
+	checkOverlap = function (linhas, remove) {
+
+    var boundsA = linhas.getBounds();
+    var boundsB = remove.getBounds();
+
+    return Phaser.Rectangle.intersects(boundsA, boundsB);
+
+   }
 	
 	
 	},	 
 
 //**********************************UPDATE****************************************************//		
     update : function(){ 
-	  
-    },
+	
+	    if (checkOverlap(linhas, remove)) {
+        console.log('linha apagada!');
+        }
+	
+	},
 	
 //**********************************FIM DE UPDATE*********************************************//
 	
 		
 }
-
-
-
 
 /*Esta função coloca os conteúdos daqui no state*/
 game.state.add('Play',Atividade1.Play);
