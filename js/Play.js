@@ -139,6 +139,15 @@ create : function(){
 	
 	linhas = game.add.group();	
 	
+	
+	 function dropHandler(linha, pointer) {
+
+    if (linha.x >650 && linha.y >250 && linha.x <780 && linha.y <350 )
+    {
+        linhas.remove(linha);
+    }
+  
+	}
 	// Função que cria linhas dinamicamente
 	
 	//Linha Tipo
@@ -147,8 +156,10 @@ create : function(){
 	linha.rotation = linha.rotation+90;
 	linha.inputEnabled = true;
 	linha.input.enableDrag(true);
+	linha.events.onDragStop.add(dropHandler, this);
 	linha.anchor.setTo(0.5, 0.5);
 	linhas.add(linha);
+	
 	}
 	
 	//Linha Tipo 2
@@ -157,8 +168,10 @@ create : function(){
 	linha.rotation = linha.rotation;
 	linha.inputEnabled = true;
 	linha.input.enableDrag(true);
+	linha.events.onDragStop.add(dropHandler, this);
 	linha.anchor.setTo(0.5, 0.5);
 	linhas.add(linha);
+	
 	}
 	
 	//Linha Tipo 3
@@ -168,7 +181,9 @@ create : function(){
 	linha.inputEnabled = true;
 	linha.input.enableDrag(true);
 	linha.anchor.setTo(0.5, 0.5);
+	linha.events.onDragStop.add(dropHandler, this);
 	linhas.add(linha);
+	
 	}
 	
 	//Linha Tipo
@@ -177,6 +192,7 @@ create : function(){
 	linha.rotation = linha.rotation+0;
 	linha.inputEnabled = true;
 	linha.input.enableDrag(true);
+	linha.events.onDragStop.add(dropHandler, this);
 	linha.anchor.setTo(0.5, 0.5);
 	linhas.add(linha);
 	
@@ -191,14 +207,9 @@ create : function(){
 	s4.events.onInputDown.add(createLine4, this);
 
 	
-	checkOverlap = function (linhas, remove) {
-
-    var boundsA = linhas.getBounds();
-    var boundsB = remove.getBounds();
-
-    return Phaser.Rectangle.intersects(boundsA, boundsB);
-
-   }
+  
+   
+   
 	
 	
 	},	 
@@ -206,16 +217,18 @@ create : function(){
 //**********************************UPDATE****************************************************//		
     update : function(){ 
 	
-	    if (checkOverlap(linhas, remove)) {
-        console.log('linha apagada!');
+	   
+		
+		
+		
         }
-	
+
 	},
 	
 //**********************************FIM DE UPDATE*********************************************//
 	
 		
-}
+
 
 /*Esta função coloca os conteúdos daqui no state*/
 game.state.add('Play',Atividade1.Play);
