@@ -1,14 +1,9 @@
 Atividade1.Play = function(){ 
 }; 
 
-//Variável que controla os ID's das linhas geradas dinamicamente 
 var linha;
 var linhas;
 
-
-
-	
-	
 Atividade1.Play.prototype = { 
 
 //**********************************PRELOAD*********************************************//
@@ -68,9 +63,7 @@ create : function(){
 	drag12 = game.add.sprite(472, 105, 'drag12');
 	drag13 = game.add.sprite(372, 350, 'drag13');
 	
-	
-	
-	
+		
 	
 	s1 = game.add.sprite(680, 90, 's1');
 	s2 = game.add.sprite(710, 90, 's2');
@@ -82,9 +75,7 @@ create : function(){
 	g3 = game.add.sprite(735, 144, 's3');
 	g4 = game.add.sprite(755, 147, 's4');
 	
-	
-
-	
+		
 	//Enable inputs 
     drag1.inputEnabled = true;
 	drag2.inputEnabled = true;
@@ -139,15 +130,13 @@ create : function(){
 	
 	linhas = game.add.group();	
 	
-	
-	 function dropHandler(linha, pointer) {
-
+    // Delete drop itens  	
+	function dropHandler(linha, pointer) {
     if (linha.x >650 && linha.y >250 && linha.x <780 && linha.y <350 )
     {
         linhas.remove(linha);
     }
-  
-	}
+  	}
 	// Função que cria linhas dinamicamente
 	
 	//Linha Tipo
@@ -159,7 +148,6 @@ create : function(){
 	linha.events.onDragStop.add(dropHandler, this);
 	linha.anchor.setTo(0.5, 0.5);
 	linhas.add(linha);
-	
 	}
 	
 	//Linha Tipo 2
@@ -171,7 +159,6 @@ create : function(){
 	linha.events.onDragStop.add(dropHandler, this);
 	linha.anchor.setTo(0.5, 0.5);
 	linhas.add(linha);
-	
 	}
 	
 	//Linha Tipo 3
@@ -183,7 +170,6 @@ create : function(){
 	linha.anchor.setTo(0.5, 0.5);
 	linha.events.onDragStop.add(dropHandler, this);
 	linhas.add(linha);
-	
 	}
 	
 	//Linha Tipo
@@ -195,7 +181,6 @@ create : function(){
 	linha.events.onDragStop.add(dropHandler, this);
 	linha.anchor.setTo(0.5, 0.5);
 	linhas.add(linha);
-	
 	}
 	
 	
@@ -207,20 +192,11 @@ create : function(){
 	s4.events.onInputDown.add(createLine4, this);
 
 	
-  
-   
-   
-	
-	
 	},	 
 
 //**********************************UPDATE****************************************************//		
     update : function(){ 
-	
-	   
-		
-		
-		
+
         }
 
 	},
