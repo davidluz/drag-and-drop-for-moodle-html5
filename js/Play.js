@@ -24,12 +24,19 @@ preload : function(){
 	game.load.image('drag12', 'imgs/drag12.png');
 	game.load.image('drag13', 'imgs/drag13.png');
 	game.load.image('enviar', 'imgs/enviar.png');
-	game.load.image('plus', 'imgs/plus.png');
+	
 	
 	game.load.image('linha1', 'imgs/linha1.png');
 	game.load.image('linha2', 'imgs/linha2.png');
 	game.load.image('bg', 'imgs/bg.png');
 	game.load.image('menu', 'imgs/menu.png');
+	game.load.image('remove','imgs/remove.png');
+	
+	game.load.image('s1','imgs/s1.png');
+	game.load.image('s2','imgs/s2.png');
+	game.load.image('s3','imgs/s3.png');
+	game.load.image('s4','imgs/s4.png');
+	
 }, 
 
 
@@ -52,10 +59,21 @@ create : function(){
 	drag12 = game.add.sprite(472, 105, 'drag12');
 	drag13 = game.add.sprite(372, 350, 'drag13');
 	menu = game.add.sprite(680,40,'menu');
+	remove = game.add.sprite(680, 250, 'remove');
+	enviar = game.add.sprite(680, 390, 'enviar');
+	
+	s1 = game.add.sprite(680, 90, 's1');
+	s2 = game.add.sprite(710, 90, 's2');
+	s3 = game.add.sprite(735, 92, 's3');
+	s4 = game.add.sprite(755, 95, 's4');
+	
+	g1 = game.add.sprite(680, 142, 's1');
+	g2 = game.add.sprite(710, 142, 's2');
+	g3 = game.add.sprite(735, 144, 's3');
+	g4 = game.add.sprite(755, 147, 's4');
+	
 	
 
-    enviar = game.add.sprite(680, 390, 'enviar');
-	plus = game.add.sprite(680, 80, 'plus');
 	
 	//Enable inputs 
     drag1.inputEnabled = true;
@@ -73,7 +91,16 @@ create : function(){
 	drag13.inputEnabled = true;
 	
 	enviar.inputEnabled = true;
-	plus.inputEnabled = true;
+	
+	s1.inputEnabled = true;
+	s2.inputEnabled = true;
+	s3.inputEnabled = true;
+	s4.inputEnabled = true;
+	
+	g1.inputEnabled = true;
+	g2.inputEnabled = true;
+	g3.inputEnabled = true;
+	g4.inputEnabled = true;
 
 
 	
@@ -116,7 +143,7 @@ create : function(){
 	}
 
 	enviar.events.onInputDown.add(goToFeedback, this);
-	plus.events.onInputDown.add(createLine, this);
+	s1.events.onInputDown.add(createLine, this);
 	
 	
 	},	 
