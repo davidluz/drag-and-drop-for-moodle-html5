@@ -29,7 +29,6 @@ function create(){
 bg = game.add.sprite(0, 0, 'bg');
 home = game.add.sprite(200, 150, 'home');
 comecar = game.add.sprite(300, 330, 'comecar');
-console.log('rodou');
 comecar.inputEnabled = true;
 comecar.events.onInputDown.add(goToPlay, this);
 game.stage.backgroundColor = '#fff';

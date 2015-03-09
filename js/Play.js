@@ -1,8 +1,11 @@
+
 Atividade1.Play = function(){ 
 }; 
 
-var linha;
+var linha ;
 var linhas;
+var linhasTotais;
+var containerDeLinhas = [];
 
 Atividade1.Play.prototype = { 
 
@@ -28,6 +31,7 @@ preload : function(){
 	game.load.image('linha1', 'imgs/linha1.png');
 	game.load.image('linha2', 'imgs/linha2.png');
 	game.load.image('bg', 'imgs/bg.png');
+	game.load.image('bg2', 'imgs/bg2.png');
 	game.load.image('menu', 'imgs/menu.png');
 	game.load.image('remove','imgs/remove.png');
 	
@@ -121,11 +125,37 @@ create : function(){
 	
 	
 	
-	
+	function openFancybox() {
+  $.fancybox({
+     'autoScale': true,
+     'transitionIn': 'elastic',
+     'transitionOut': 'elastic',
+     'speedIn': 500,
+     'speedOut': 300,
+     'autoDimensions': true,
+     'centerOnScroll': true,
+     'href' : '#feedback'
+  });
+}
 	
 	function goToFeedback(){
-	game.state.start('Feedback');
-		
+
+		openFancybox();
+		//$("#feedback").fadeIn();
+     
+     /*States são zerados quando inicializam - o Array container de linhas, guarda os status dos objetos
+     var numeroDeLinhas = linhas.countLiving(); 
+     while (numeroDeLinhas>=0){
+     var linhaTemp = linhas.getAt(numeroDeLinhas);
+     containerDeLinhas.push(linhaTemp);
+     numeroDeLinhas =  numeroDeLinhas-1;
+     }
+     
+    linhasTotais = linhas.countLiving(); 
+	 game.state.start('Feedback');*/ 
+	
+	
+
 	}
 	
 	linhas = game.add.group();	
@@ -137,7 +167,9 @@ create : function(){
         linhas.remove(linha);
     }
   	}
-	// Função que cria linhas dinamicamente
+	
+	
+
 	
 	//Linha Tipo
 	createLine1 = function (){
@@ -147,8 +179,9 @@ create : function(){
 	linha.input.enableDrag(true);
 	linha.events.onDragStop.add(dropHandler, this);
 	linha.anchor.setTo(0.5, 0.5);
+
 	linhas.add(linha);
-	}
+		}
 	
 	//Linha Tipo 2
 	createLine2 = function (){
@@ -190,7 +223,7 @@ create : function(){
 	s2.events.onInputDown.add(createLine2, this);
 	s3.events.onInputDown.add(createLine3, this);
 	s4.events.onInputDown.add(createLine4, this);
-
+    
 	
 	},	 
 
@@ -198,6 +231,8 @@ create : function(){
     update : function(){ 
 
         }
+
+
 
 	},
 	
