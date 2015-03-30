@@ -15,7 +15,7 @@ Atividade1.Feedback = function(){ };
  
 
 //Global configuration
-var game = new Phaser.Game(800, 450, Phaser.CANVAS, 'game', { preload: preload, create: create, update: update});
+var game = new Phaser.Game(800, 550, Phaser.CANVAS, 'game', { preload: preload, create: create, update: update});
 
 function preload(){
 

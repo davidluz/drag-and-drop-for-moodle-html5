@@ -1,5 +1,5 @@
 
-Atividade1.Play = function(){ 
+Atividade1.Play2 = function(){ 
 }; 
 
 var linha ;
@@ -7,24 +7,22 @@ var linhas;
 var linhasTotais;
 var containerDeLinhas = [];
 
-Atividade1.Play.prototype = { 
+Atividade1.Play2.prototype = { 
 
 //**********************************PRELOAD*********************************************//
 preload : function(){ 
 	
-	game.load.image('drag1', 'imgs/drag1.png');
-	game.load.image('drag2', 'imgs/drag2.png');
-	game.load.image('drag3', 'imgs/drag3.png');
-	game.load.image('drag4', 'imgs/drag4.png');
-	game.load.image('drag5', 'imgs/drag5.png');
-	game.load.image('drag6', 'imgs/drag6.png');
-	game.load.image('drag7', 'imgs/drag7.png');
-	game.load.image('drag8', 'imgs/drag8.png');
-	game.load.image('drag9', 'imgs/drag9.png');
-	game.load.image('drag10', 'imgs/drag10.png');
-	game.load.image('drag11', 'imgs/drag11.png');
-	game.load.image('drag12', 'imgs/drag12.png');
-	game.load.image('drag13', 'imgs/drag13.png');
+	game.load.image('drag1', 'imgs/drag14.png');
+	game.load.image('drag2', 'imgs/drag15.png');
+	game.load.image('drag3', 'imgs/drag16.png');
+	game.load.image('drag4', 'imgs/drag17.png');
+	game.load.image('drag5', 'imgs/drag18.png');
+	game.load.image('drag6', 'imgs/drag19.png');
+	game.load.image('drag7', 'imgs/drag20.png');
+	game.load.image('drag8', 'imgs/drag21.png');
+	game.load.image('drag9', 'imgs/drag22.png');
+	game.load.image('drag10', 'imgs/drag23.png');
+
 	game.load.image('enviar', 'imgs/enviar.png');
 	
 	
@@ -63,9 +61,7 @@ create : function(){
 	drag8 = game.add.sprite(306, 385, 'drag8');
 	drag9 = game.add.sprite(301, 70,  'drag9');
 	drag10 = game.add.sprite(424, 204, 'drag10');
-	drag11 = game.add.sprite(530, 105, 'drag11');
-	drag12 = game.add.sprite(472, 105, 'drag12');
-	drag13 = game.add.sprite(372, 350, 'drag13');
+	
 	
 		
 	
@@ -87,9 +83,7 @@ create : function(){
 	drag8.inputEnabled = true;
 	drag9.inputEnabled = true;
 	drag10.inputEnabled = true;
-	drag11.inputEnabled = true;
-	drag12.inputEnabled = true;
-	drag13.inputEnabled = true;
+	
 	
 	enviar.inputEnabled = true;
 	
@@ -110,9 +104,7 @@ create : function(){
 	drag8.input.enableDrag(true);
 	drag9.input.enableDrag(true);
 	drag10.input.enableDrag(true);
-	drag11.input.enableDrag(true);
-	drag12.input.enableDrag(true);
-	drag13.input.enableDrag(true);
+	
 	
 	
 	
@@ -125,9 +117,7 @@ create : function(){
      'speedOut': 300,
      'autoDimensions': true,
      'centerOnScroll': true,
-	 'closeClick'  : false,
-	 
-     'href' : '#feedback'
+     'href' : '#feedback2'
   });
 }
 	
@@ -235,4 +225,4 @@ create : function(){
 
 
 /*Esta função coloca os conteúdos daqui no state*/
-game.state.add('Play',Atividade1.Play);
+game.state.add('Play2',Atividade1.Play2);

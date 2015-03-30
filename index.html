@@ -7,7 +7,9 @@
 <script src="js/phaser-arcade-physics.js"></script>
 <script src="js/Game.js"></script>
 <script src="js/Play.js"></script>
+<script src="js/Play2.js"></script>
 <script src="js/Feedback.js"></script>
+<script src="js/Fim.js"></script>
 <script src="js/jquery.fancybox.js"></script>
 <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.css">
 
@@ -22,6 +24,16 @@ margin:0px;
 #feedback{
 display: none;
 z-index: 2;
+}
+#feedback2{
+display: none;
+z-index: 2;
+}
+#proximo_esquema{
+text-align: right;
+}	
+#finalizar_esquema{
+text-align: right;
 }	
 
 </style>
@@ -31,7 +43,20 @@ z-index: 2;
 <div id="game" ></div>
 </body>
 
-<div id="feedback" > <img src="imgs/feedback1.png"></div>
+<div id="feedback" ><p>Compare seu esquema com este gabarito</p> <img src="imgs/feedback1.png"><p id="proximo_esquema"><img src="imgs/proximo_esquema.png"></p></div>
+<div id="feedback2" ><p>Compare seu esquema com este gabarito</p> <img src="imgs/feedback2.png"><p id="finalizar_esquema"><img src="imgs/finalizar_esquema.png"></div>
+<script>
+$("#proximo_esquema").click(function() {
+game.state.start('Play2');
+$.fancybox.close();
+});
 
+$("#finalizar_esquema").click(function() {
+
+game.state.start('Fim');
+$.fancybox.close();
+
+});
+</script>
 
 </html>
